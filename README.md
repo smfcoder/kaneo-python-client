@@ -64,6 +64,97 @@ client = KaneoClient(
 | `client.columns` | `create(project_id, name, ...)`, `delete(column_id)` |
 | `client.config` | `get()` |
 
+## MCP Server (for AI agents)
+
+The package includes an MCP server that lets AI tools (Claude Code, Cursor, Windsurf, etc.) manage your Kaneo projects and tasks.
+
+### Install
+
+```bash
+pip install kaneo[mcp]
+```
+
+### Claude Code
+
+Add to `~/.claude/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "kaneo": {
+      "command": "kaneo-mcp",
+      "env": {
+        "KANEO_TOKEN": "your-api-token",
+        "KANEO_WORKSPACE_ID": "your-workspace-id"
+      }
+    }
+  }
+}
+```
+
+For self-hosted Kaneo, add `KANEO_BASE_URL`:
+
+```json
+{
+  "mcpServers": {
+    "kaneo": {
+      "command": "kaneo-mcp",
+      "env": {
+        "KANEO_TOKEN": "your-api-token",
+        "KANEO_WORKSPACE_ID": "your-workspace-id",
+        "KANEO_BASE_URL": "https://kaneo.yourdomain.com/api"
+      }
+    }
+  }
+}
+```
+
+### Cursor
+
+Add to `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "kaneo": {
+      "command": "kaneo-mcp",
+      "env": {
+        "KANEO_TOKEN": "your-api-token",
+        "KANEO_WORKSPACE_ID": "your-workspace-id"
+      }
+    }
+  }
+}
+```
+
+### Available Tools
+
+| Tool | Description |
+|------|-------------|
+| `get_config` | Get Kaneo server configuration |
+| `list_projects` | List all projects in workspace |
+| `get_project` | Get project details with tasks |
+| `create_project` | Create a new project |
+| `delete_project` | Delete a project |
+| `list_tasks` | List all tasks in a project |
+| `get_task` | Get a single task |
+| `create_task` | Create a task with title, priority, status, description |
+| `delete_task` | Delete a task |
+| `update_task_status` | Change task status (backlog/to-do/in-progress/done/cancelled) |
+| `update_task_priority` | Change task priority (no-priority/low/medium/high/urgent) |
+| `update_task_title` | Change task title |
+| `update_task_description` | Change task description |
+| `create_column` | Create a board column |
+| `delete_column` | Delete a board column |
+
+### Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `KANEO_TOKEN` | Yes | Your Kaneo API token |
+| `KANEO_BASE_URL` | No | API URL (default: `https://cloud.kaneo.app/api`) |
+| `KANEO_WORKSPACE_ID` | No | Default workspace ID |
+
 ## Exceptions
 
 | Exception | Trigger |

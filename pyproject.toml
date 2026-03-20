@@ -23,6 +23,12 @@ dev = [
     "flake8>=7.0",
     "mypy>=1.0",
 ]
+mcp = [
+    "mcp[cli]>=1.0.0",
+]
+
+[project.scripts]
+kaneo-mcp = "kaneo.mcp.server:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/kaneo"]
