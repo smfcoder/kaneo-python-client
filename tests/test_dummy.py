@@ -1,3 +1,5 @@
-def my_ugly_function():
+def my_clean_function():
     print("Hello World")
-my_ugly_function()
+
+
+my_clean_function()
