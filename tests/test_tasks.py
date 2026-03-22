@@ -1,5 +1,6 @@
 import pytest
 from pytest_httpx import HTTPXMock
+
 from kaneo.models import Task
 
 PROJECT_ID = "proj-abc"

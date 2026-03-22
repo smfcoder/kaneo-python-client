@@ -1,4 +1,5 @@
 from pytest_httpx import HTTPXMock
+
 from kaneo.models import Config
 
 CONFIG_RESPONSE = {

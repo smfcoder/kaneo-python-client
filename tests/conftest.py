@@ -1,4 +1,5 @@
 import pytest
+
 from kaneo import KaneoClient
 
 BASE_URL = "https://cloud.kaneo.app/api"

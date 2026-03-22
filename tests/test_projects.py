@@ -1,4 +1,5 @@
 from pytest_httpx import HTTPXMock
+
 from kaneo.models import Project
 
 WORKSPACE_ID = "ws-123"
