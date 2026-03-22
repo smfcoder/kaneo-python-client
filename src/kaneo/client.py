@@ -5,8 +5,13 @@ from typing import Any
 
 import httpx
 
-from kaneo.exceptions import (AuthError, KaneoError, NotFoundError,
-                              ServerError, ValidationError)
+from kaneo.exceptions import (
+    AuthError,
+    KaneoError,
+    NotFoundError,
+    ServerError,
+    ValidationError,
+)
 
 
 class KaneoClient:

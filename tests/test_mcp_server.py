@@ -3,12 +3,24 @@ from pytest_httpx import HTTPXMock
 
 import kaneo.mcp.server as server_module
 from kaneo import KaneoClient
-from kaneo.mcp.server import (_get_workspace_id, create_column, create_project,
-                              create_task, delete_column, delete_project,
-                              delete_task, get_config, get_project, get_task,
-                              list_projects, list_tasks,
-                              update_task_description, update_task_priority,
-                              update_task_status, update_task_title)
+from kaneo.mcp.server import (
+    _get_workspace_id,
+    create_column,
+    create_project,
+    create_task,
+    delete_column,
+    delete_project,
+    delete_task,
+    get_config,
+    get_project,
+    get_task,
+    list_projects,
+    list_tasks,
+    update_task_description,
+    update_task_priority,
+    update_task_status,
+    update_task_title,
+)
 
 BASE_URL = "https://cloud.kaneo.app/api"
 TOKEN = "test-token"

@@ -2,8 +2,7 @@ import pytest
 from pytest_httpx import HTTPXMock
 
 from kaneo import KaneoClient
-from kaneo.exceptions import (AuthError, NotFoundError, ServerError,
-                              ValidationError)
+from kaneo.exceptions import AuthError, NotFoundError, ServerError, ValidationError
 
 
 def test_client_sets_auth_header(client, httpx_mock: HTTPXMock):
