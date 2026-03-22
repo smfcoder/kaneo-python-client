@@ -22,9 +22,7 @@ def _get_client() -> KaneoClient:
 def _get_workspace_id(workspace_id: Optional[str] = None) -> str:
     ws = workspace_id or os.environ.get("KANEO_WORKSPACE_ID")
     if not ws:
-        raise ValueError(
-            "workspace_id is required. Pass it explicitly or set KANEO_WORKSPACE_ID."
-        )
+        raise ValueError("workspace_id is required. Pass it explicitly or set KANEO_WORKSPACE_ID.")
     return ws
 
 
@@ -94,10 +92,7 @@ def get_project(project_id: str, workspace_id: Optional[str] = None) -> dict:
         "is_public": p.is_public,
         "description": p.description,
         "created_at": p.created_at,
-        "tasks": [
-            {"id": t.id, "title": t.title, "status": t.status, "priority": t.priority}
-            for t in p.tasks
-        ],
+        "tasks": [{"id": t.id, "title": t.title, "status": t.status, "priority": t.priority} for t in p.tasks],
     }
 
 
@@ -300,9 +295,7 @@ def create_column(
         is_final: Whether this column represents a "done" state.
     """
     client = _get_client()
-    return client.columns.create(
-        project_id=project_id, name=name, icon=icon, color=color, is_final=is_final
-    )
+    return client.columns.create(project_id=project_id, name=name, icon=icon, color=color, is_final=is_final)
 
 
 @mcp.tool()

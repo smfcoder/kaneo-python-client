@@ -31,13 +31,9 @@ class KaneoClient:
     ):
         resolved_token = token or os.environ.get("KANEO_TOKEN")
         if not resolved_token:
-            raise ValueError(
-                "token is required. Pass it explicitly or set the KANEO_TOKEN environment variable."
-            )
+            raise ValueError("token is required. Pass it explicitly or set the KANEO_TOKEN environment variable.")
 
-        resolved_base_url = base_url or os.environ.get(
-            "KANEO_BASE_URL", self.DEFAULT_BASE_URL
-        )
+        resolved_base_url = base_url or os.environ.get("KANEO_BASE_URL", self.DEFAULT_BASE_URL)
         self.base_url = resolved_base_url.rstrip("/")
         self._token = resolved_token
         self._http = httpx.Client(
@@ -98,16 +94,10 @@ class KaneoClient:
         if resp.status_code == 404:
             raise NotFoundError("Resource not found", status_code=404)
         if resp.status_code == 400:
-            msg = (
-                resp.json().get("message", "Bad request")
-                if resp.content
-                else "Bad request"
-            )
+            msg = resp.json().get("message", "Bad request") if resp.content else "Bad request"
             raise ValidationError(msg, status_code=400)
         if resp.status_code >= 500:
-            raise ServerError(
-                f"Server error ({resp.status_code})", status_code=resp.status_code
-            )
+            raise ServerError(f"Server error ({resp.status_code})", status_code=resp.status_code)
         if resp.status_code >= 400:
             raise KaneoError(f"HTTP {resp.status_code}", status_code=resp.status_code)
         if not resp.content:

@@ -15,9 +15,7 @@ CONFIG_RESPONSE = {
 
 
 def test_get_config(client, httpx_mock: HTTPXMock):
-    httpx_mock.add_response(
-        url="https://cloud.kaneo.app/api/config", json=CONFIG_RESPONSE
-    )
+    httpx_mock.add_response(url="https://cloud.kaneo.app/api/config", json=CONFIG_RESPONSE)
     cfg = client.config.get()
     assert isinstance(cfg, Config)
     assert cfg.has_smtp is True

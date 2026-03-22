@@ -4,9 +4,7 @@ PROJECT_ID = "proj-abc"
 
 
 def test_create_column(client, httpx_mock: HTTPXMock):
-    httpx_mock.add_response(
-        url=f"https://cloud.kaneo.app/api/column/{PROJECT_ID}", json={}
-    )
+    httpx_mock.add_response(url=f"https://cloud.kaneo.app/api/column/{PROJECT_ID}", json={})
     result = client.columns.create(project_id=PROJECT_ID, name="In Review")
     assert result == {}
 

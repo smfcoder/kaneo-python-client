@@ -14,14 +14,10 @@ class ProjectsResource:
 
     def get(self, project_id: str, workspace_id: str) -> Project:
         """Get a specific project by ID."""
-        data = self._client._get(
-            f"/project/{project_id}", params={"workspaceId": workspace_id}
-        )
+        data = self._client._get(f"/project/{project_id}", params={"workspaceId": workspace_id})
         return Project.from_dict(data)
 
-    def create(
-        self, workspace_id: str, name: str, slug: str, icon: str = "Layout"
-    ) -> Project:
+    def create(self, workspace_id: str, name: str, slug: str, icon: str = "Layout") -> Project:
         """Create a new project in a workspace."""
         data = self._client._post(
             "/project",

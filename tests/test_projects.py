@@ -44,19 +44,13 @@ def test_get_project(client, httpx_mock: HTTPXMock):
 
 
 def test_create_project(client, httpx_mock: HTTPXMock):
-    httpx_mock.add_response(
-        url="https://cloud.kaneo.app/api/project", json=PROJECT_DATA
-    )
-    project = client.projects.create(
-        workspace_id=WORKSPACE_ID, name="My Project", slug="MP", icon="Layout"
-    )
+    httpx_mock.add_response(url="https://cloud.kaneo.app/api/project", json=PROJECT_DATA)
+    project = client.projects.create(workspace_id=WORKSPACE_ID, name="My Project", slug="MP", icon="Layout")
     assert isinstance(project, Project)
     assert project.name == "My Project"
 
 
 def test_delete_project(client, httpx_mock: HTTPXMock):
-    httpx_mock.add_response(
-        url="https://cloud.kaneo.app/api/project/proj-abc", json=PROJECT_DATA
-    )
+    httpx_mock.add_response(url="https://cloud.kaneo.app/api/project/proj-abc", json=PROJECT_DATA)
     deleted = client.projects.delete(project_id="proj-abc")
     assert deleted.id == "proj-abc"

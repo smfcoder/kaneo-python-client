@@ -114,9 +114,7 @@ def test_get_config(mock_client):
 
 def test_list_projects(mock_client, monkeypatch):
     monkeypatch.setenv("KANEO_WORKSPACE_ID", WORKSPACE_ID)
-    mock_client.add_response(
-        url=f"{BASE_URL}/project?workspaceId={WORKSPACE_ID}", json=[PROJECT_DATA]
-    )
+    mock_client.add_response(url=f"{BASE_URL}/project?workspaceId={WORKSPACE_ID}", json=[PROJECT_DATA])
     result = list_projects()
     assert len(result) == 1
     assert result[0]["name"] == "My Project"
@@ -209,9 +207,7 @@ def test_update_task_title(mock_client):
 
 def test_update_task_description(mock_client):
     updated = {**TASK_DATA, "description": "New desc"}
-    mock_client.add_response(
-        url=f"{BASE_URL}/task/description/task-xyz", json=TASK_DATA
-    )
+    mock_client.add_response(url=f"{BASE_URL}/task/description/task-xyz", json=TASK_DATA)
     mock_client.add_response(url=f"{BASE_URL}/task/task-xyz", json=updated)
     result = update_task_description("task-xyz", "New desc")
     assert result["description"] == "New desc"
