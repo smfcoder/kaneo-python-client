@@ -34,7 +34,9 @@ def test_client_raises_not_found_on_404(client, httpx_mock: HTTPXMock):
 
 def test_client_raises_validation_error_on_400(client, httpx_mock: HTTPXMock):
     httpx_mock.add_response(
-        url="https://cloud.kaneo.app/api/config", status_code=400, json={"message": "bad input"}
+        url="https://cloud.kaneo.app/api/config",
+        status_code=400,
+        json={"message": "bad input"},
     )
     with pytest.raises(ValidationError) as exc:
         client._get("/config")

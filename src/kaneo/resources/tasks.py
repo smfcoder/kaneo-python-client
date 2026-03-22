@@ -40,7 +40,9 @@ class TasksResource:
     ) -> Task:
         """Create a new task in a project."""
         if priority not in VALID_PRIORITIES:
-            raise ValueError(f"Invalid priority '{priority}'. Must be one of: {VALID_PRIORITIES}")
+            raise ValueError(
+                f"Invalid priority '{priority}'. Must be one of: {VALID_PRIORITIES}"
+            )
         body: dict = {
             "title": title,
             "description": description,
@@ -64,14 +66,18 @@ class TasksResource:
     def update_status(self, task_id: str, status: str) -> Task:
         """Update the status of a task."""
         if status not in VALID_STATUSES:
-            raise ValueError(f"Invalid status '{status}'. Must be one of: {VALID_STATUSES}")
+            raise ValueError(
+                f"Invalid status '{status}'. Must be one of: {VALID_STATUSES}"
+            )
         self._client._put(f"/task/status/{task_id}", {"status": status})
         return self.get(task_id)
 
     def update_priority(self, task_id: str, priority: str) -> Task:
         """Update the priority of a task."""
         if priority not in VALID_PRIORITIES:
-            raise ValueError(f"Invalid priority '{priority}'. Must be one of: {VALID_PRIORITIES}")
+            raise ValueError(
+                f"Invalid priority '{priority}'. Must be one of: {VALID_PRIORITIES}"
+            )
         self._client._put(f"/task/priority/{task_id}", {"priority": priority})
         return self.get(task_id)
 

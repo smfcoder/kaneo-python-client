@@ -12,8 +12,6 @@ def test_create_column(client, httpx_mock: HTTPXMock):
 
 
 def test_delete_column(client, httpx_mock: HTTPXMock):
-    httpx_mock.add_response(
-        url="https://cloud.kaneo.app/api/column/col-123", json={}
-    )
+    httpx_mock.add_response(url="https://cloud.kaneo.app/api/column/col-123", json={})
     result = client.columns.delete(column_id="col-123")
     assert result == {}
