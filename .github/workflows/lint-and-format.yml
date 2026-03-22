@@ -36,4 +36,4 @@ jobs:
       run: isort --check-only src/ tests/
 
     - name: Lint with Flake8
-      run: flake8 src/ tests/ --max-line-length=88
+      run: flake8 src/ tests/ --max-line-length=150

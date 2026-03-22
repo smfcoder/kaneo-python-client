@@ -38,3 +38,6 @@ packages = ["src/kaneo"]
 
 [tool.isort]
 profile = "black"
+
+[tool.black]
+line-length = 150
